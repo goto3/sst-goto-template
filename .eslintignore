@@ -1,0 +1,8 @@
+**/node_modules/**
+**/build/**
+vite.config.ts
+**/_templates/**
+**/migrations/**
+**/coverage/**
+**/*.json
+**/types.ts

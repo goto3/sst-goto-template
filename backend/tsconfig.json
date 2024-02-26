@@ -1,21 +1,21 @@
 {
   "extends": "@tsconfig/node18/tsconfig.json",
   "exclude": [
-    "node_modules",
-    "src"
+    "node_modules"
   ],
   "compilerOptions": {
     "module": "esnext",
     "moduleResolution": "node",
+    "baseUrl": ".",
     "paths": {
-      "@stacks/*": [
-        "./stacks/*"
+      "@core/*": [
+        "../core/*"
       ],
-      "@backend/*": [
-        "./backend/*"
+      "@Services/*": [
+        "../core/services/*"
       ],
-      "@frontend/*": [
-        "./frontend/*"
+      "@Errors/*": [
+        "../core/services/*"
       ],
     }
   }

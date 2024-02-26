@@ -5,7 +5,7 @@ Instructions:
 
 
 Frontend:
-- `cd /packages/frontend`
+- `cd /src/frontend`
 - `pnpm install`
 - `pnpm run dev`
 
@@ -21,8 +21,8 @@ Tech:
 - STT 2
 - pnpm
 - typescript
+- eslint
 - Drizzle TODO
-- eslint TODO
 - vitest TODO
 - middy TODO
 - dotenv?

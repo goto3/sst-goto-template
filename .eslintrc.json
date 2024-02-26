@@ -1,0 +1,70 @@
+{
+  "root": true,
+  "env": {
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "airbnb-base",
+    "airbnb-typescript/base"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": [
+      "./tsconfig.json",
+      "./stacks/tsconfig.json",
+      "./backend/tsconfig.json"
+    ],
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "ignorePatterns": [
+    "**/*.mjs"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "backend/functions/**/*.ts"
+      ],
+      "rules": {
+        "import/prefer-default-export": "off"
+      }
+    }
+  ],
+  "rules": {
+    //"@typescript-eslint/require-await": "off",
+    //"@typescript-eslint/no-unsafe-assignment": "off",
+    //"@typescript-eslint/no-non-null-assertion": "off",
+    //"@typescript-eslint/unbound-method": "off",
+    //"consistent-return": "off"
+    //"import/prefer-default-export": "off",
+    //"require-await": "off",
+    //"no-template-curly-in-string": "off",
+    "max-len": [
+      "error",
+      {
+        "code": 125,
+        "tabWidth": 2,
+        "ignoreUrls": true
+      }
+    ]
+    //"import/no-extraneous-dependencies": "off",
+    //"no-console": "off",
+    //"prefer-rest-params": "off",
+    //"no-return-assign": "off"
+  }
+}
