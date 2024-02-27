@@ -1,12 +1,11 @@
 import { StackContext, Api } from 'sst/constructs';
+import todosRoutes from './todos';
 
 export default function API({ stack }: StackContext): Api {
   const api = new Api(stack, 'api', {
-    routes: {
-      'GET /todo': 'backend/functions/todos/get.handler',
-      'POST /todo': 'backend/functions/todos/post.handler',
-    },
   });
+
+  todosRoutes(stack, api);
 
   stack.addOutputs({
     ApiEndpoint: api.url,
