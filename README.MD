@@ -1,5 +1,6 @@
 Instructions:
 - `pnpm install`
+- Execute `pnpx sst secrets set <key> <value>` for each of the environment variables set in `./.env` Read more at: https://docs.sst.dev/packages/sst#sst-secrets
 - edit ./sst.config.ts profile: "personal" set aws profile in .aws/credentials file
 - `pnpm run dev`
 
@@ -22,10 +23,10 @@ Tech:
 - pnpm
 - typescript
 - eslint
-- Drizzle TODO
+- Drizzle TODO https://discord.com/channels/983865673656705025/1172383109157761074
 - vitest
 - middy TODO
-- dotenv? TODO
+- Envirnment variables in SSM
 
 Commands:
 - Typescript typecheck: `npm run typecheck`
@@ -60,3 +61,9 @@ Recommended extensions:
 - Vitest
 - Error Lens
 - ESLint
+
+Connect to RDS Database with DBeaver PGAdmin, etc
+Use https://github.com/sst/torpedo to connect to a database inside a private VPC
+- Install torpedo
+- Set environment variable `AWS_PROFILE=xxx torpedo`, replace xxx with aws profile name
+- Connect to database localhost:5432

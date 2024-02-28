@@ -2,6 +2,7 @@ import { SSTConfig } from 'sst';
 
 import API from '@stacks/api/api.stack';
 import frontend from '@stacks/frontend/frontend.stack';
+import SQLDatabase from '@stacks/persistence/rds.stack';
 
 export default {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -15,5 +16,6 @@ export default {
   stacks(app) {
     app.stack(API);
     app.stack(frontend);
+    app.stack(SQLDatabase);
   },
 } satisfies SSTConfig;
