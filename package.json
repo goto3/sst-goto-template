@@ -17,8 +17,6 @@
   },
   "workspaces": [
     "backend/*",
-    "backend/core/*",
-    "backend/core/drizzle/*",
     "frontend/*"
   ],
   "devDependencies": {

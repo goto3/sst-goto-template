@@ -2,7 +2,7 @@ import {
   StackContext, Api, use,
 } from 'sst/constructs';
 
-import SQLDatabase from '../persistence/rds.stack';
+import SQLDatabase from '../persistence/sql-database.stack';
 import * as routes from './routes';
 
 export default function API({ stack }: StackContext): Api {
