@@ -6,3 +6,4 @@ vite.config.ts
 **/coverage/**
 **/*.json
 **/types.ts
+**/sst-env.d.ts

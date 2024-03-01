@@ -4,7 +4,12 @@ export default function SQLDatabase({ stack }: StackContext): RDS {
   const rds = new RDS(stack, 'db', {
     engine: 'postgresql11.13',
     defaultDatabaseName: 'dbName',
+  });
 
+  stack.addOutputs({
+    resourceArn: rds.clusterArn,
+    secretArn: rds.secretArn,
+    database: rds.defaultDatabaseName,
   });
 
   return rds;

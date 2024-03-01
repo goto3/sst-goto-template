@@ -1,0 +1,22 @@
+{
+  "name": "@sst-goto-template/stacks",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "vitest",
+    "typecheck": "tsc -noEmit",
+    "lint": "eslint . ",
+    "lint:fix": "npm run lint --  --fix",
+    "migrate": "drizzle-kit generate:pg"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.20",
+    "@types/pg": "^8.11.2",
+    "drizzle-kit": "^0.20.14"
+  },
+  "dependencies": {
+    "@aws-sdk/client-rds-data": "^3.523.0",
+    "drizzle-orm": "^0.29.4",
+    "sst": "2.40.3"
+  }
+}

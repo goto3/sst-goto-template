@@ -13,6 +13,7 @@
     "**/node_modules": true
   },
   "search.exclude": {
-    "**/.sst": true
+    "**/.sst": true,
+    "**/coverage/**": true,
   }
 }

@@ -11,12 +11,6 @@
       "@stacks/*": [
         "./stacks/*"
       ],
-      "@backend/*": [
-        "./backend/*"
-      ],
-      "@frontend/*": [
-        "./frontend/*"
-      ],
     }
   }
 }

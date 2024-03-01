@@ -67,3 +67,7 @@ Use https://github.com/sst/torpedo to connect to a database inside a private VPC
 - Install torpedo
 - Set environment variable `AWS_PROFILE=xxx torpedo`, replace xxx with aws profile name
 - Connect to database localhost:5432
+
+
+Generate migrations: read: https://github.com/drizzle-team/drizzle-kit-mirror
+`cd backend/core && pnpm run migrate`
