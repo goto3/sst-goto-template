@@ -23,9 +23,9 @@ Tech:
 - pnpm
 - typescript
 - eslint
-- Drizzle TODO https://discord.com/channels/983865673656705025/1172383109157761074
+- Drizzle https://discord.com/channels/983865673656705025/1172383109157761074
 - vitest
-- middy TODO
+- middy
 - Envirnment variables in SSM
 
 Commands:

@@ -1,5 +1,5 @@
 import { eq } from 'drizzle-orm';
-import { db } from '../database';
+import { db } from '../../database';
 import { users } from './users.schema';
 
 export const fetch = async () => {

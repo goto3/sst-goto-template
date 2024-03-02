@@ -1,5 +1,5 @@
 import { ApiHandler } from 'sst/node/api';
-import * as Users from '../../repository/users/users.repository';
+import * as Users from '../../repository/domains/users/users.repository';
 
 export const handler = ApiHandler(async () => {
   const response = await Users.fetch();

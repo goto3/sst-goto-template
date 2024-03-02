@@ -21,6 +21,9 @@
     "typescript-eslint": "^7.0.2"
   },
   "dependencies": {
+    "@middy/core": "^5.2.4",
+    "@types/lodash": "^4.14.202",
+    "lodash": "^4.17.21",
     "sst": "2.40.3"
   }
 }

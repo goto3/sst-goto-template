@@ -11,8 +11,14 @@
       "@stacks/*": [
         "./stacks/*"
       ],
-      "Repositories/*": [
+      "Contexts/*": [
+        "./backend/contexts/*"
+      ],
+      "Repository/*": [
         "./backend/repository/*"
+      ],
+      "Repositories/*": [
+        "./backend/repository/domains/*"
       ],
     }
   }

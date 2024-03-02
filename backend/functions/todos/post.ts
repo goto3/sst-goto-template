@@ -1,25 +1,24 @@
-import { APIGatewayProxyEventV2 } from 'aws-lambda';
+import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 import { ApiHandler } from 'sst/node/api';
+import middy from '@middy/core';
+
 import * as TodosService from '../../contexts/todos/services';
+import { eventParser, errorHandler } from '../utils/middlewares';
 
 type RequestBody = {
   text: string;
 };
 
-export const handler = ApiHandler(async (event: APIGatewayProxyEventV2) => {
-  const body = JSON.parse(event.body || '{}') as RequestBody;
-  const data = body;
-  try {
-    const newTodo = await TodosService.create(data);
-    return {
-      statusCode: 200,
-      body: JSON.stringify(newTodo),
-    };
-  } catch (err) {
-    console.error('Error during operation', err);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: 'Error during operation' }),
-    };
-  }
+const lambdaHandler = ApiHandler(async (event: APIGatewayProxyEventV2) => {
+  const body = event.body as unknown as RequestBody;
+  const data = {
+    text: body.text,
+  };
+  const newTodo = await TodosService.create(data);
+  return newTodo as unknown as APIGatewayProxyStructuredResultV2;
 });
+
+export const handler = middy()
+  .use(eventParser())
+  .use(errorHandler())
+  .handler(lambdaHandler);
