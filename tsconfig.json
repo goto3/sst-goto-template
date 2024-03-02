@@ -5,6 +5,7 @@
     "src"
   ],
   "compilerOptions": {
+    "strict": true,
     "module": "esnext",
     "moduleResolution": "node",
     "paths": {

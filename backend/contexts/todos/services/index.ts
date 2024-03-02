@@ -38,7 +38,7 @@ export const create = async (data: InsertTodoInput) => {
   } catch (error) {
     console.error('Context service error: ', error);
     if (error instanceof HttpError) throw error;
-    parseDatabaseError(error as DatabaseError, 'POST', 'TODOS');
+    parseDatabaseError(error, 'POST', 'TODOS');
     throw new HttpError(500, 'POST.TODOS.SERVER_ERROR', 'Error while creating Todo.');
   }
 };

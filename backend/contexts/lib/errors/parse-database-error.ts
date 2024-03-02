@@ -11,7 +11,7 @@ const ERRORS: Record<string, ErrorFunction> = {
   23505: (verb: string, resource: string) => new HttpError(400, `${verb}.${resource}.DUPLICATE`, 'Already exists a Todo with that id'),
 };
 
-export const parseDatabaseError = (error: DatabaseError, verb: string, resource: string) => {
+export const parseDatabaseError = (error: unknown, verb: string, resource: string) => {
   if (!(error instanceof DatabaseError)) return;
 
   const code = error.code || '0';

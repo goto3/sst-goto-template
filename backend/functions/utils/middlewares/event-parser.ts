@@ -3,7 +3,7 @@ import middy from '@middy/core';
 import _ from 'lodash';
 import HttpError from 'Contexts/lib/errors/http-error';
 
-const mimePattern = /^application\/(.+\+)?json($|;.+)/;
+const contentTypePattern = /^application\/(.+\+)?json($|;.+)/;
 const responseKeys = ['headers', 'cookies', 'isBase64Encoded', 'statusCode'];
 
 const defaults = {
@@ -15,7 +15,7 @@ export const eventParser = (opts = {}): middy.MiddlewareObj<APIGatewayProxyEvent
     const options = { ...defaults, ...opts };
     const { headers, body } = request.event;
     const contentType = headers?.['Content-Type'] ?? headers?.['content-type'];
-    if (!mimePattern.test(contentType as string)) return;
+    if (!contentTypePattern.test(contentType as string)) return;
 
     try {
       const data = request.event.isBase64Encoded
@@ -27,6 +27,7 @@ export const eventParser = (opts = {}): middy.MiddlewareObj<APIGatewayProxyEvent
     } catch (err) {
       throw new HttpError(400, 'Malformed Body', 'Invalid or malformed JSON was provided.');
     }
+    console.info('🚀 Incoming Request: ', request);
   },
 
   after: async (request) => {
@@ -40,6 +41,7 @@ export const eventParser = (opts = {}): middy.MiddlewareObj<APIGatewayProxyEvent
       statusCode,
       body,
     };
+    console.info('✅ Outgoing Response: ', request.response);
   },
 });
 

@@ -4,7 +4,6 @@ Instructions:
 - edit ./sst.config.ts profile: "personal" set aws profile in .aws/credentials file
 - `pnpm run dev`
 
-
 Frontend:
 - `cd /src/frontend`
 - `pnpm install`
@@ -26,7 +25,15 @@ Tech:
 - Drizzle https://discord.com/channels/983865673656705025/1172383109157761074
 - vitest
 - middy
+  - Event parser
+  - Validator (zod)
+  - Error handler
+- zod validation
 - Envirnment variables in SSM
+
+Architecture:
+- Clean Architecture (API -> function -> context -> repository)
+- Error handling
 
 Commands:
 - Typescript typecheck: `npm run typecheck`

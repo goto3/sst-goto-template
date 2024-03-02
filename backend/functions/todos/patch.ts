@@ -1,26 +1,26 @@
-import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 import { ApiHandler } from 'sst/node/api';
 import middy from '@middy/core';
 
 import * as TodosService from '../../contexts/todos/services';
-import { eventParser, errorHandler } from '../utils/middlewares';
+import { eventParser, errorHandler, validator } from '../utils/middlewares';
+import { schema as requestSchema, PatchEvent } from './schemas/request/patch.schema';
+import { LambdaHandler } from '../utils/types/lambda-handler.type';
 
-type RequestBody = {
-  text: string;
-};
-
-const lambdaHandler = ApiHandler(async (event: APIGatewayProxyEventV2) => {
-  const body = event.body as unknown as RequestBody;
+const lambdaHandler: LambdaHandler<PatchEvent> = async (event) => {
+  const { body } = event;
   const data = {
     id: event.pathParameters?.id ?? '',
     text: body.text,
   };
 
   const updatedTodo = await TodosService.update(data);
-  return updatedTodo as unknown as APIGatewayProxyStructuredResultV2;
-});
+  return updatedTodo;
+};
 
-export const handler = middy()
+export const handler = ApiHandler(middy()
   .use(eventParser())
   .use(errorHandler())
-  .handler(lambdaHandler);
+  .use(validator({
+    input: { schema: requestSchema },
+  }))
+  .handler(lambdaHandler));

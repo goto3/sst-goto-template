@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 import { ApiHandler } from 'sst/node/api';
 import middy from '@middy/core';
 
 import * as TodosService from '../../contexts/todos/services';
 import { eventParser, errorHandler } from '../utils/middlewares';
+import { LambdaHandler } from '../utils/types/lambda-handler.type';
 
-const lambdaHandler = ApiHandler(async (event: APIGatewayProxyEventV2) => {
+const lambdaHandler: LambdaHandler<unknown> = async (event) => {
   const todos = await TodosService.get();
-  return { todos } as unknown as APIGatewayProxyStructuredResultV2;
-});
+  return { todos };
+};
 
-export const handler = middy()
+export const handler = ApiHandler(middy()
   .use(eventParser())
   .use(errorHandler())
-  .handler(lambdaHandler);
+  .handler(lambdaHandler));
