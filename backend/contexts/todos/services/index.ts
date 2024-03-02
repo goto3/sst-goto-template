@@ -1,4 +1,5 @@
 import HttpError from 'Contexts/lib/errors/http-error';
+import parseDatabaseError from 'Contexts/lib/errors/parse-database-error';
 import * as TodosRepository from 'Repositories/todos';
 import DatabaseError from 'Repository/utils/errors/database.error';
 
@@ -37,10 +38,7 @@ export const create = async (data: InsertTodoInput) => {
   } catch (error) {
     console.error('Context service error: ', error);
     if (error instanceof HttpError) throw error;
-    if (error instanceof DatabaseError) {
-      const { code } = error;
-      if (code === '23505') throw new HttpError(400, 'POST.TODOS.DUPLICATE', 'Already exists a Todo with that id');
-    }
+    parseDatabaseError(error as DatabaseError, 'POST', 'TODOS');
     throw new HttpError(500, 'POST.TODOS.SERVER_ERROR', 'Error while creating Todo.');
   }
 };
@@ -58,10 +56,7 @@ export const update = async (data: UpdateTodoInput) => {
   } catch (error) {
     console.error('Context service error: ', error);
     if (error instanceof HttpError) throw error;
-    if (error instanceof DatabaseError) {
-      const { code } = error;
-      if (code === '23505') throw new HttpError(400, 'PATCH.TODOS.DUPLICATE', 'Already exists a Todo with that id');
-    }
+    parseDatabaseError(error as DatabaseError, 'PATCH', 'TODOS');
     throw new HttpError(500, 'PATCH.TODOS.SERVER_ERROR', 'Error while updating Todo.');
   }
 };
