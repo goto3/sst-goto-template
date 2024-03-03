@@ -1,5 +1,5 @@
 import { migrate as mig } from 'drizzle-orm/postgres-js/migrator';
-import { db } from '..';
+import db from '..';
 
 export const runMigrations = async (): Promise<void> => {
   // when running locally using pnpm run dev, the migrations are in a different location
@@ -7,7 +7,7 @@ export const runMigrations = async (): Promise<void> => {
     ? 'backend/repository/database/migrations'
     : 'migrations';
 
-  await mig(db, { migrationsFolder: pathToMigrations });
+  await mig(db(), { migrationsFolder: pathToMigrations });
 };
 
 export default runMigrations;

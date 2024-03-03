@@ -22,12 +22,14 @@ Tech:
 - pnpm
 - typescript
 - eslint
+  - eslint-config-airbnb-typescript
 - Drizzle https://discord.com/channels/983865673656705025/1172383109157761074
+  - drizzle-kit
 - vitest
 - middy
-  - Event parser
-  - Validator (zod)
-  - Error handler
+  - Custom Event parser middleware
+  - Custom Validator (zod) middleware
+  - Custom Error handler middleware
 - zod validation
 - Envirnment variables in SSM
 

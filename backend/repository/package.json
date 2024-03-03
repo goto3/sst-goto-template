@@ -18,6 +18,7 @@
     "@aws-sdk/client-rds-data": "^3.523.0",
     "@paralleldrive/cuid2": "^2.2.2",
     "drizzle-orm": "^0.29.4",
+    "pg": "^8.11.3",
     "sst": "2.40.3"
   }
 }
