@@ -15,5 +15,9 @@
   "search.exclude": {
     "**/.sst": true,
     "**/coverage/**": true,
-  }
+  },
+  "cSpell.words": [
+    "Millis",
+    "todos"
+  ]
 }

@@ -1,41 +1,34 @@
 import { Stack, Api, RDS } from 'sst/constructs';
-import LOCAL_DB_PARAMS from '../../utils/get-local-db-params';
+import _ from 'lodash';
+import databaseParams from '../../utils/database-params';
 
 export const todosRoutes = (stack: Stack, api: Api, rds?: RDS) => (api.addRoutes(stack, {
   'GET /todo': {
     function: {
-      bind: rds && [rds],
-      environment: {
-        ...LOCAL_DB_PARAMS,
-      },
-      handler: 'backend/functions/todos/get.handler',
+      bind: _.union(databaseParams(rds).bind),
+      environment: _.merge(databaseParams(rds).environment) as Record<string, string>,
+      handler: 'backend/lambda/todos/get.handler',
     },
   },
   'POST /todo': {
     function: {
-      bind: rds && [rds],
-      environment: {
-        ...LOCAL_DB_PARAMS,
-      },
-      handler: 'backend/functions/todos/post.handler',
+      bind: _.union(databaseParams(rds).bind),
+      environment: _.merge(databaseParams(rds).environment) as Record<string, string>,
+      handler: 'backend/lambda/todos/post.handler',
     },
   },
   'PATCH /todo/{id}': {
     function: {
-      bind: rds && [rds],
-      environment: {
-        ...LOCAL_DB_PARAMS,
-      },
-      handler: 'backend/functions/todos/patch.handler',
+      bind: _.union(databaseParams(rds).bind),
+      environment: _.merge(databaseParams(rds).environment) as Record<string, string>,
+      handler: 'backend/lambda/todos/patch.handler',
     },
   },
   'DELETE /todo/{id}': {
     function: {
-      bind: rds && [rds],
-      environment: {
-        ...LOCAL_DB_PARAMS,
-      },
-      handler: 'backend/functions/todos/delete.handler',
+      bind: _.union(databaseParams(rds).bind),
+      environment: _.merge(databaseParams(rds).environment) as Record<string, string>,
+      handler: 'backend/lambda/todos/delete.handler',
     },
   },
 }));

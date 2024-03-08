@@ -13,7 +13,8 @@
     "lint": "eslint . ",
     "lint:fix": "npm run lint --  --fix",
     "test": "vitest",
-    "test:coverage": "npm test -- --coverage"
+    "test:coverage": "npm test -- --coverage",
+    "clear:win": "npm cache clean --force && rmdir /s /q node_modules"
   },
   "workspaces": [
     "backend/*",
@@ -33,6 +34,7 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vitest": "^0.3.22",
+    "eslint-plugin-drizzle": "^0.2.3",
     "typescript": "^5.3.3",
     "typescript-eslint": "^7.1.0",
     "vite-tsconfig-paths": "^4.3.1",
@@ -43,6 +45,6 @@
     "@types/lodash": "^4.14.202",
     "glob": "^10.3.10",
     "lodash": "^4.17.21",
-    "sst": "2.40.3"
+    "sst": "2.40.6"
   }
 }

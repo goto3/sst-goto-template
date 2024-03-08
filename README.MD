@@ -1,6 +1,5 @@
 Instructions:
 - `pnpm install`
-- Execute `pnpx sst secrets set <key> <value>` for each of the environment variables set in `./.env` Read more at: https://docs.sst.dev/packages/sst#sst-secrets
 - edit ./sst.config.ts profile: "personal" set aws profile in .aws/credentials file
 - `pnpm run dev`
 
@@ -16,6 +15,7 @@ Features:
   - Amplify TODO
 - Rest API TODO
 - Auth TODO
+- API Documentation TODO
 
 Tech:
 - STT 2
@@ -31,7 +31,7 @@ Tech:
   - Custom Validator (zod) middleware
   - Custom Error handler middleware
 - zod validation
-- Envirnment variables in SSM
+- Environment variables in SSM
 
 Architecture:
 - Clean Architecture (API -> function -> context -> repository)
@@ -80,3 +80,8 @@ Use https://github.com/sst/torpedo to connect to a database inside a private VPC
 
 Generate migrations: read: https://github.com/drizzle-team/drizzle-kit-mirror
 `cd backend/core && pnpm run migrate`
+
+
+
+
+.env = production variables, when `pnpm sst deploy`

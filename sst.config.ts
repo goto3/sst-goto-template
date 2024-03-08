@@ -1,6 +1,7 @@
 import { SSTConfig } from 'sst';
 
-import SQLDatabase from '@stacks/persistence/sql-database.stack';
+import SQLDatabase from '@stacks/persistence/sql/sql.stack';
+import DynamoDBStack from '@stacks/persistence/dynamodb/dynamodb.stack';
 import API from '@stacks/api/api.stack';
 // import frontend from '@stacks/frontend/frontend.stack';
 
@@ -15,6 +16,7 @@ export default {
   },
   stacks(app) {
     app.stack(SQLDatabase);
+    app.stack(DynamoDBStack);
     app.stack(API);
     // app.stack(frontend);
   },
