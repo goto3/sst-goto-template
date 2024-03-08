@@ -1,7 +1,8 @@
 import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 import middy from '@middy/core';
 import _ from 'lodash';
-import HttpError from '../../../_lib/errors/http-error';
+
+import HttpError from 'Errors/http-error';
 
 const contentTypePattern = /^application\/(.+\+)?json($|;.+)/;
 const responseKeys = ['headers', 'cookies', 'isBase64Encoded', 'statusCode'];

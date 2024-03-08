@@ -19,7 +19,8 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": [
-      "./tsconfig.json"
+      "./tsconfig.json",
+      "./backend/tsconfig.json"
     ],
     "ecmaFeatures": {
       "jsx": true
@@ -37,7 +38,7 @@
   "overrides": [
     {
       "files": [
-        "backend/functions/**/*.ts"
+        "backend/lambda/**/*.ts"
       ],
       "rules": {
         "import/prefer-default-export": "off"
@@ -53,6 +54,9 @@
     //"import/prefer-default-export": "off",
     //"require-await": "off",
     //"no-template-curly-in-string": "off",
+    //"prefer-rest-params": "off",
+    //"no-return-assign": "off",
+    //"import/no-extraneous-dependencies": "off",
     "import/no-named-as-default": "off",
     "max-len": [
       "error",
@@ -62,10 +66,7 @@
         "ignoreUrls": true
       }
     ],
-    //"import/no-extraneous-dependencies": "off",
     "no-console": "off",
-    //"prefer-rest-params": "off",
-    //"no-return-assign": "off",
     "drizzle/enforce-delete-with-where": "error",
     "drizzle/enforce-update-with-where": "error"
   }

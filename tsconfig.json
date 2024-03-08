@@ -2,7 +2,7 @@
   "extends": "@tsconfig/node18/tsconfig.json",
   "exclude": [
     "node_modules",
-    "src"
+    "backend"
   ],
   "compilerOptions": {
     "strict": true,

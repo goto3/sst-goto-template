@@ -1,6 +1,6 @@
-import HttpError from '../../_lib/errors/http-error';
-import * as TodosRepository from '../../infra/repositories/todos';
-import serviceWrapper from '../../_lib/wrappers/service-wrapper';
+import HttpError from 'Errors/http-error';
+import * as TodosRepository from 'Repositories/todos';
+import serviceWrapper from 'Wrappers/service-wrapper';
 
 type InsertTodoInput = {
   text: string

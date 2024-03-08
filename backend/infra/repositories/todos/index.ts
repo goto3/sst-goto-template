@@ -1,8 +1,8 @@
 import { eq } from 'drizzle-orm';
 
-import db from '../../postgres';
+import db from 'Postgres/index';
+import { todos, InsertTodo } from 'Postgres/schemas/todos.schema';
 import QueryWrapper from '../_utils/query-wrapper';
-import { todos, InsertTodo } from '../../postgres/schemas/todos.schema';
 
 export const fetch = async () => QueryWrapper(
   db.select().from(todos),

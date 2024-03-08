@@ -1,5 +1,6 @@
 import { ApiHandler } from 'sst/node/api';
-import { runMigrations } from '../../services/postgres';
+
+import { runMigrations } from 'Services/postgres';
 
 export const handler = ApiHandler(async () => {
   await runMigrations();

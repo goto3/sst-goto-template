@@ -1,6 +1,5 @@
 import { APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
-
-import HttpError from '../../../_lib/errors/http-error';
+import HttpError from 'Errors/http-error';
 
 export class RequestValidationError extends HttpError {
   public details?: object;

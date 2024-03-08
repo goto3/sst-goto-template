@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 
-import { HttpStatusCodes } from '../types/http-status-codes.type';
+import { HttpStatusCodes } from 'Types/http-status-codes.type';
 
 const default500Error = {
   code: 'Internal Server Error',

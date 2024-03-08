@@ -2,7 +2,7 @@
 import { ApiHandler } from 'sst/node/api';
 import middy from '@middy/core';
 
-import * as TodosService from '../../services/todos';
+import * as TodosService from 'Services/todos';
 import { eventParser, errorHandler, logger } from '../_utils/middlewares';
 import { LambdaHandler } from '../_utils/types/lambda-handler.type';
 

@@ -3,7 +3,7 @@ import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-l
 import { ZodObject } from 'zod';
 import middy from '@middy/core';
 
-import HttpError from '../../../_lib/errors/http-error';
+import HttpError from 'Errors/http-error';
 import RequestValidationError from '../errors/request-validation.error';
 
 type ValidatorParams = {

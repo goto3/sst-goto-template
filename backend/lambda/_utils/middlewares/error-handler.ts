@@ -1,7 +1,7 @@
 import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 import middy from '@middy/core';
 
-import HttpError from '../../../_lib/errors/http-error';
+import HttpError from 'Errors/http-error';
 
 export const errorHandler = (): middy.MiddlewareObj<APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2> => ({
   onError: async (request) => {

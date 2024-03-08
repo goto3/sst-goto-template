@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
+import { HttpVerbs } from 'Types/http-verbs.type';
+import DatabaseError from 'Repositories/_utils/errors/database.error';
 import HttpError from './http-error';
-import DatabaseError from '../../infra/repositories/_utils/errors/database.error';
-import { HttpVerbs } from '../types/http-verbs.type';
 
 interface ErrorFunction {
   (verb: string, resource: string): HttpError;
