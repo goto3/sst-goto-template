@@ -17,6 +17,7 @@
     "**/coverage/**": true,
   },
   "cSpell.words": [
+    "electrodb",
     "Millis",
     "todos"
   ]

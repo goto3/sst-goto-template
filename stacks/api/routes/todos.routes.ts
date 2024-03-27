@@ -1,36 +1,66 @@
-import { Stack, Api, RDS } from 'sst/constructs';
+import { Stack, Api, use } from 'sst/constructs';
+import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import _ from 'lodash';
-import databaseParams from '../../utils/database-params';
 
-export const todosRoutes = (stack: Stack, api: Api, rds?: RDS) => (api.addRoutes(stack, {
-  'GET /todo': {
-    function: {
-      bind: _.union(databaseParams(rds).bind),
-      environment: _.merge(databaseParams(rds).environment) as Record<string, string>,
-      handler: 'backend/lambda/todos/get.handler',
+import SQLDatabase from '@stacks/persistence/sql/sql.stack';
+import ElastiCache from '@stacks/cache/elasticache.stack';
+import redisParams from '@stacks/utils/redis-params';
+import databaseParams from '@stacks/utils/database-params';
+import { Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam';
+
+export const todosRoutes = (stack: Stack, api: Api) => {
+  const rds = use(SQLDatabase);
+  const redis = use(ElastiCache);
+
+  const bind = _.union(
+    databaseParams(rds).bind,
+    redisParams(redis).bind,
+  );
+  const environment = _.merge(databaseParams(rds).environment) as Record<string, string>;
+
+  api.addRoutes(stack, {
+    'GET /todo': {
+      function: {
+        vpc: redis.redisVPC,
+        vpcSubnets: {
+          subnetType: ec2.SubnetType.PRIVATE_WITH_EGRESS,
+        },
+        bind,
+        environment,
+        handler: 'backend/lambda/todos/get.handler',
+      },
     },
-  },
-  'POST /todo': {
-    function: {
-      bind: _.union(databaseParams(rds).bind),
-      environment: _.merge(databaseParams(rds).environment) as Record<string, string>,
-      handler: 'backend/lambda/todos/post.handler',
+    'POST /todo': {
+      function: {
+        vpc: redis.redisVPC,
+        bind,
+        environment,
+        handler: 'backend/lambda/todos/post.handler',
+      },
     },
-  },
-  'PATCH /todo/{id}': {
-    function: {
-      bind: _.union(databaseParams(rds).bind),
-      environment: _.merge(databaseParams(rds).environment) as Record<string, string>,
-      handler: 'backend/lambda/todos/patch.handler',
+    'PATCH /todo/{id}': {
+      function: {
+        vpc: redis.redisVPC,
+        bind,
+        environment,
+        handler: 'backend/lambda/todos/patch.handler',
+      },
     },
-  },
-  'DELETE /todo/{id}': {
-    function: {
-      bind: _.union(databaseParams(rds).bind),
-      environment: _.merge(databaseParams(rds).environment) as Record<string, string>,
-      handler: 'backend/lambda/todos/delete.handler',
+    'DELETE /todo/{id}': {
+      function: {
+        vpc: redis.redisVPC,
+        bind,
+        environment,
+        handler: 'backend/lambda/todos/delete.handler',
+      },
     },
-  },
-}));
+  });
+
+  api.getFunction('GET /todo')?.attachPermissions([new PolicyStatement({
+    effect: Effect.ALLOW,
+    actions: ['elasticache:GetMetricStatistics', 'elasticache:DescribeCacheClusters'],
+    resources: ['arn:aws:elasticache:us-east-2:483078141949:cluster:gt-dev-cluster'],
+  })]);
+};
 
 export default todosRoutes;

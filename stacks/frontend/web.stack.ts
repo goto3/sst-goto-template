@@ -2,13 +2,13 @@ import { use, StackContext, StaticSite } from 'sst/constructs';
 
 import API from '../api/api.stack';
 
-export default function frontend({ stack }: StackContext) {
+export default function website({ stack }: StackContext) {
   const api = use(API);
 
   const web = new StaticSite(stack, 'web', {
-    path: 'frontend',
+    path: 'frontend/console',
     buildOutput: 'dist',
-    buildCommand: 'npm run build',
+    buildCommand: 'vite build',
     environment: {
       VITE_APP_API_URL: api.url,
     },
